@@ -55,7 +55,7 @@ class DescribeJunit extends \PHPSpec\Context {
         $case->addAttribute('name', 'example1');
         $case->addAttribute('time', '0.01');
         
-        $this->spec($actual->asXml())
+        $this->spec($actual)
             ->should->be($expected->asXml());
     }
     
@@ -96,12 +96,13 @@ class DescribeJunit extends \PHPSpec\Context {
         $fail = $case->addChild('failure', $failure_msg);
         $fail->addAttribute('type', 'Exception');
         
-        $this->spec($actual->asXml())
+        $this->spec($actual)
             ->should->be($expected->asXml());
     }
     
     public function itFormatsFailuresInJunitFormat() {
-        $msg = 'The message. Doesn\'t matter what it is as long as it is shown in the failure';
+        $msg = 'The message. Doesn\'t matter what it is as long as it is';
+        $msg .= ' shown in the failure';
         $failure_e = new \Exception($msg);
         $formatter = $this->_formatter;
         $formatter->update($this->_reporter, new ReporterEvent(
@@ -138,7 +139,7 @@ class DescribeJunit extends \PHPSpec\Context {
         $fail = $case->addChild('failure', $failure_msg);
         $fail->addAttribute('type', 'Exception');
         
-        $this->spec($actual->asXml())
+        $this->spec($actual)
             ->should->be($expected->asXml());
     }
     
@@ -180,7 +181,7 @@ class DescribeJunit extends \PHPSpec\Context {
         $fail = $case->addChild('error', $failure_msg);
         $fail->addAttribute('type', 'Exception');
         
-        $this->spec($actual->asXml())
+        $this->spec($actual)
             ->should->be($expected->asXml());
     }
     
